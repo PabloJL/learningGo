@@ -1,24 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
+
+func Score(x, y float64) int {
+	var score int
+	a:= x * x
+	b:= y * y
+	distance := math.Sqrt(a + b)
+	
+	if distance <= 1 {
+		score = 10
+	}else if distance <= 5{
+		score = 5
+	}else if distance <= 10{
+		score = 1
+	}else{
+		score = 0
+	}
+	return score
+}
 
 func main() {
-	carsPerHour := (float64(1105)) * 100 / 100
-	carsPerMinute := carsPerHour / 60
-	carsCount:= 37
-	var cost uint
-	if carsCount < 10 {
-		cost = uint(carsCount * 10000)
-	}else if carsCount / 10 == 0 {
-		cost = uint((carsCount / 10) * 95000)
-		
-	}else {
-		group:= (carsCount / 10) * 95000
-		singles:= (carsCount % 10) * 10000
-		cost = uint(group + singles)
-		
-	}
-
-	fmt.Println(carsPerHour, int(carsPerMinute), cost)
+	fmt.Println(Score(1,0))
 }
 
